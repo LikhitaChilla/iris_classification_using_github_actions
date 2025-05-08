@@ -1,0 +1,27 @@
+name : iris classification using github actions
+on:
+    push:
+        branches:
+            - main
+
+jobs:
+    model_train:
+        runs-on: ubuntu-latest
+        steps:
+            - name: checkout code
+              uses: actions/checkout@v3
+            - name: get python
+              uses: actions/setup-python@v4
+              with:
+                python-version: "3.10"
+            - name: install requirements
+              run: |
+               python -m pip install --update pip
+               pip install -r requirements.txt
+            - name: train 
+              run: python src/train.py
+            - name: save pickle file
+              uses: actions/upload-artifact@v3
+              with:
+                name: iris-model
+                path: model.pkl          
