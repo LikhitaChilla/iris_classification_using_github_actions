@@ -21,7 +21,7 @@ jobs:
             - name: train 
               run: python src/train.py
             - name: save pickle file
-              uses: actions/upload-artifact@v3
+              uses: actions/upload-artifact@v2
               with:
                 name: iris-model
                 path: model.pkl          
